@@ -29,7 +29,7 @@ async def home():
 
 
 @app.post("/image/classification/predication")
-async def predict_classification(file: UploadFile):
+async def predict_classification(file: UploadFile= File(description="A file read as UploadFile")):
 
     return {"filename": file.filename}
 

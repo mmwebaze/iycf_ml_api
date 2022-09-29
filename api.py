@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from iycf_model import IycfModel
 from numpy import array
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
@@ -20,7 +21,7 @@ app.add_middleware(
 
 class_predications = array(['123123', '607000', '607001'])
 
-@app.get("/")
+@app.get("/home")
 async def home():
 
 
@@ -32,6 +33,17 @@ async def predict_classification(file: UploadFile):
 
     return {"filename": file.filename}
 
+@app.get("/")
+async def main():
+    content = """
+<body>
+<form action="/image/classification/predication/" enctype="multipart/form-data" method="post">
+<input name="files" type="file" multiple>
+<input type="submit">
+</form>
+</body>
+    """
+    return HTMLResponse(content=content)
 
 if __name__ == "__main__":
     # uvicorn.run(app, host="0.0.0.0", port=int(os.getenv('APP_PORT')))

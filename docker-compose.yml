@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  iycf_ml_msrvc:
+    container_name: iycf-ml-api
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    environment:
+      APP_ENV: "dev"
+      APP_DEBUG: "False"
+      #APP_PORT: 8000
+    volumes:
+      - .:/app

@@ -32,10 +32,10 @@ async def home():
 
 @app.post("/image/classification/predication")
 async def predict_classification(file: UploadFile= File(description="A file read as UploadFile")):
-    print("****OK****")
+    print("****OK****?")
     if file.filename:
         #fn = os.path.basename(file.filename)
-        fn = os.path.join('files', file.filename)
+        fn = os.path.join('./files', file.filename)
         with open(fn, "wb+") as file_object:
             shutil.copyfileobj(file.file, file_object)
     return {"filename": file.filename}

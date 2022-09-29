@@ -2,7 +2,6 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from iycf_model import IycfModel
-from numpy import array
 from fastapi.responses import HTMLResponse
 import os
 import shutil
@@ -21,8 +20,6 @@ app.add_middleware(
     allow_headers=headers,
 )
 
-class_predications = array(['123123', '607000', '607001'])
-
 @app.get("/home")
 async def home():
 
@@ -38,7 +35,9 @@ async def predict_classification(file: UploadFile= File(description="A file read
         fn = os.path.join('./files', file.filename)
         with open(fn, "wb+") as file_object:
             shutil.copyfileobj(file.file, file_object)
-        return {"filename": file.filename}
+        model = IycfModel('iycf_model_v3.h5')
+        return model.predict_class(fn)
+        #return {"filename": file.filename}
     return {"message": "No image provided!"}
 
 @app.get("/")

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File
+from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from iycf_model import IycfModel
@@ -28,12 +28,9 @@ async def home():
 
 
 @app.post("/image/classification/predication")
-async def predict_classification(file: bytes = File()):
-    with open('image.jpg','wb') as image:
-        image.write(file)
-        image.close()
+async def predict_classification(file: UploadFile):
 
-    return {"I can be reached: ": "OK"}
+    return {"filename": file.filename}
 
 
 if __name__ == "__main__":

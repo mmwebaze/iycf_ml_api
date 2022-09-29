@@ -2,6 +2,7 @@ from fastapi import FastAPI, File
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from iycf_model import IycfModel
+from numpy import array
 
 app = FastAPI()
 

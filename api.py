@@ -38,7 +38,8 @@ async def predict_classification(file: UploadFile= File(description="A file read
         fn = os.path.join('./files', file.filename)
         with open(fn, "wb+") as file_object:
             shutil.copyfileobj(file.file, file_object)
-    return {"filename": file.filename}
+        return {"filename": file.filename}
+    return {"message": "No image provided!"}
 
 @app.get("/")
 async def main():

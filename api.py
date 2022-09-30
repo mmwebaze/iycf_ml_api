@@ -27,7 +27,7 @@ async def home():
     return {"message": "Welcome to IYCF Image Vision API!"}
 
 
-@app.post("/image/classification/predication")
+@app.post("/image/classification/prediction")
 async def predict_classification(file: UploadFile= File(description="A file read as UploadFile")):
     print("****OK****?")
     if file.filename:
@@ -40,16 +40,16 @@ async def predict_classification(file: UploadFile= File(description="A file read
         #return {"filename": file.filename}
     return {"message": "No image provided!"}
 
-@app.get("/")
-async def main():
-    content = """
-<body>
-<form action="/image/classification/predication/" enctype="multipart/form-data" method="post">
-<input name="files" type="file" multiple>
-<input type="submit">
-</form>
-</body>
-    """
+# @app.get("/")
+# async def main():
+#     content = """
+# <body>
+# <form action="/image/classification/predication/" enctype="multipart/form-data" method="post">
+# <input name="files" type="file" multiple>
+# <input type="submit">
+# </form>
+# </body>
+#     """
     return HTMLResponse(content=content)
 
 if __name__ == "__main__":

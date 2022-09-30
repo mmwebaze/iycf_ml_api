@@ -15,7 +15,7 @@ class IycfModel():
     #     return load_model(os.path.join(self.model_dir, self.model))
 
     def predict_class(self, image):
-        img_path = os.path.join('files', '607000', image)
+        img_path = os.path.join('files', image)
         img = load_img(img_path, target_size= (128,128))
         img_array = img_to_array(img)
         img_array = expand_dims(img_array, 0)

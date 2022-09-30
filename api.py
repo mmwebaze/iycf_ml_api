@@ -1,7 +1,7 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-from iycf_model import IycfModel
+from iycf_model.IycfModel import IycfModel
 from fastapi.responses import HTMLResponse
 import os
 import shutil

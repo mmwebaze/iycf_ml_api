@@ -9,7 +9,7 @@ class IycfModel():
     def __init__(self, model, model_dir='ML_MODELS'):
         self.model=model
         self.model_dir = model_dir
-        self.class_predictions = array(['123123', '607000', '607001'])
+        self.class_predictions = array(['123123', '123124', '296001', '607000', '607001', ''])
         
     # def get_model(self):
     #     return load_model(os.path.join(self.model_dir, self.model))

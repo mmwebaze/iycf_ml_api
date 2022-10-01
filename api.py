@@ -6,6 +6,8 @@ from fastapi.responses import HTMLResponse
 import os
 import shutil
 
+API_VERSION = "v1"
+
 app = FastAPI()
 
 origins = ["*"]
@@ -20,14 +22,18 @@ app.add_middleware(
     allow_headers=headers,
 )
 
-@app.get("/home")
+@app.get("/api/v1/home")
 async def home():
 
 
     return {"message": "Welcome to IYCF Image Vision API!"}
 
+@app.post("/api/v1/caption")
+async def generate_caption():
 
-@app.post("/image/classification/prediction")
+    return {"caption": "Caption end-point not yet implemented"}
+
+@app.post("/api/v1/prediction")
 async def predict_classification(file: UploadFile= File(description="A file read as UploadFile")):
     print("****OK****?")
     if file.filename:
@@ -40,6 +46,12 @@ async def predict_classification(file: UploadFile= File(description="A file read
         #return {"filename": file.filename}
     return {"message": "No image provided!"}
 
+@app.get("/")
+async def main():
+    result = await home()
+
+    return result
+
 # @app.get("/")
 # async def main():
 #     content = """
@@ -50,7 +62,7 @@ async def predict_classification(file: UploadFile= File(description="A file read
 # </form>
 # </body>
 #     """
-    return HTMLResponse(content=content)
+    #return HTMLResponse(content=content)
 
 if __name__ == "__main__":
     # uvicorn.run(app, host="0.0.0.0", port=int(os.getenv('APP_PORT')))

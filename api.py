@@ -35,7 +35,7 @@ async def predict_classification(file: UploadFile= File(description="A file read
         fn = os.path.join('./files', file.filename)
         with open(fn, "wb+") as file_object:
             shutil.copyfileobj(file.file, file_object)
-        model = IycfModel('iycf_model_v3.h5')
+        model = IycfModel('iycf_model_v4.h5')
         return model.predict_class(file.filename)
         #return {"filename": file.filename}
     return {"message": "No image provided!"}
